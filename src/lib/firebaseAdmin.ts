@@ -33,6 +33,12 @@ const mockTopics: import('@/types').Topic[] = [
   { id: "topic5", name: "Lenguaje y Literatura", averageRating: 4.6, tags: ["gramática", "novela", "poesía"] },
   { id: "topicMath", name: "Matematicas", averageRating: 4.7, tags: ["algebra", "geometría", "cálculo", "topología", "teoría de números"] },
   { id: "topicPhysics", name: "Física", averageRating: 4.5, tags: ["mecánica", "eléctrica", "magnética", "termodinámica"] },
+  { id: "topicSpanish", name: "Español y Literatura", averageRating: 4.4, tags: ["gramática", "ortografía", "lectura crítica", "literatura colombiana", "géneros literarios"] },
+  { id: "topicSocialStudies", name: "Ciencias Sociales", averageRating: 4.3, tags: ["historia de colombia", "geografía colombiana", "democracia", "constitución", "economía"] },
+  { id: "topicNaturalSciences", name: "Ciencias Naturales", averageRating: 4.5, tags: ["biología", "ecología", "cuerpo humano", "química básica", "física básica"] },
+  { id: "topicEnglish", name: "Inglés", averageRating: 4.6, tags: ["grammar", "vocabulary", "reading", "listening", "speaking"] },
+  { id: "topicArts", name: "Educación Artística", averageRating: 4.1, tags: ["dibujo", "pintura", "música", "teatro", "historia del arte colombiano"] },
+  { id: "topicPE", name: "Educación Física", averageRating: 4.0, tags: ["deportes", "recreación", "salud", "juegos tradicionales"] },
 ];
 
 const mockCommunities: import('@/types').Community[] = [
@@ -43,15 +49,15 @@ const mockCommunities: import('@/types').Community[] = [
   { id: "comm5", topicId: "topic3", name: "Renacimiento en Detalle", description: "Análisis profundo de obras, artistas y contexto del Renacimiento italiano y nórdico.", rating: 4.3, membersCount: 95, subtopics: ["Da Vinci", "Miguel Ángel", "Mecenazgo"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "renaissance art" },
   { id: "comm6", topicId: "topic4", name: "Química de Polímeros", description: "Estudio de macromoléculas, síntesis y propiedades de los polímeros.", rating: 3.9, membersCount: 70, subtopics: ["Síntesis", "Caracterización", "Aplicaciones Industriales"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "chemistry lab" }, // Note: rating < 4
   { id: "commMathLearn", topicId: "topicMath", name: "Matematic's learns", description: "", rating: 4.5, membersCount: 100, subtopics: ["Algebraic geometry", "Algebraic topology", "Number theory"], dataAiHint: "mathematics learning" },
-  { 
-    id: "commMathExplorers", 
-    topicId: "topicMath", 
-    name: "Exploradores de Matemáticas", 
-    description: "Un espacio para discutir, aprender y resolver problemas en todas las áreas de las matemáticas.", 
-    rating: 4.6, 
-    membersCount: 150, 
-    subtopics: ["Álgebra Fundamental", "Geometría Euclidiana", "Cálculo Diferencial e Integral", "Estadística Descriptiva", "Lógica y Conjuntos"], 
-    dataAiHint: "mathematics study" 
+  {
+    id: "commMathExplorers",
+    topicId: "topicMath",
+    name: "Exploradores de Matemáticas",
+    description: "Un espacio para discutir, aprender y resolver problemas en todas las áreas de las matemáticas.",
+    rating: 4.6,
+    membersCount: 150,
+    subtopics: ["Álgebra Fundamental", "Geometría Euclidiana", "Cálculo Diferencial e Integral", "Estadística Descriptiva", "Lógica y Conjuntos"],
+    dataAiHint: "mathematics study"
     // No imageUrl, so it won't display an image, matching the previous request's style for math/physics cards
   },
   { id: "commPhysicsLearn", topicId: "topicPhysics", name: "Fisic's learns", description: "", rating: 4.6, membersCount: 120, subtopics: ["Fisica mecanica", "Fisica electrica", "Fisica magnetica"], dataAiHint: "physics learning" },

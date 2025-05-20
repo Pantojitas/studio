@@ -10,14 +10,14 @@ interface CommunityCardProps {
 }
 
 export function CommunityCard({ community }: CommunityCardProps) {
-  const textColor = 'text-foreground'; // Use themed foreground
-  const iconColor = 'text-muted-foreground';
-  const cardStripColor = 'bg-[hsl(var(--card-strip))]';
+  const iconColor = 'text-muted-foreground'; // #4A5568
+  const cardStripColor = 'bg-[hsl(var(--card-strip))]'; // #2D3748
 
-  // Use community.name for placeholder if imageUrl is missing
   const placeholderText = community.name.replace(/\s/g, '+');
+  // Ensure placeholder is used if imageUrl is missing, matching original behavior
   const effectiveImageUrl = community.imageUrl || `https://placehold.co/600x400.png?text=${placeholderText}`;
-  const showImage = !!community.imageUrl; // Only show image if explicitly provided
+  // Only show image if explicitly provided, consistent with "Matemáticas" / "Física" card styling preference
+  const showImage = !!community.imageUrl; 
 
   return (
     <Card className="flex flex-col overflow-hidden bg-card shadow-lg rounded-lg relative h-full">
@@ -36,48 +36,47 @@ export function CommunityCard({ community }: CommunityCardProps) {
         </div>
       )}
       
-      <CardHeader className="pb-2 pr-10"> {/* pr-10 to avoid overlap with strip */}
+      <CardHeader className="px-4 pt-4 pb-0 pr-10"> {/* Adjusted padding: 16px top/left, 0 bottom for precise spacing to content */}
         <div className="flex items-center justify-between mb-1">
-          <CardTitle className={`text-lg font-bold ${textColor}`}>{community.name}</CardTitle>
+          <CardTitle className="text-lg font-bold text-foreground">{community.name}</CardTitle> {/* text-foreground is #1A202C */}
           <div className="flex items-center space-x-2">
             <Users size={16} className={iconColor} aria-label="Community icon" />
             <Star size={16} className={iconColor} aria-label="Favorite icon" />
           </div>
         </div>
         {community.isAISuggested && (
-          <div className="flex items-center text-xs text-amber-600 mb-1">
+          <div className="flex items-center text-xs text-amber-600 mt-1 mb-1"> {/* Added mt-1 */}
             <AlertTriangle size={14} className="mr-1" />
             <span>AI Suggested</span>
           </div>
         )}
         {community.description && (
-            <CardDescription className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+            <CardDescription className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mt-1"> {/* text-muted-foreground is #4A5568 */}
               {community.description}
             </CardDescription>
         )}
       </CardHeader>
       
-      <CardContent className="flex-grow flex flex-col pb-4 pt-2 pr-10"> {/* Adjusted padding, pr-10 to avoid overlap with strip */}
+      <CardContent className="px-4 pb-4 pt-3 flex-grow flex flex-col pr-10"> {/* pt-3 for 12px margin for button */}
         <Button
-          variant="default"
-          size="sm"
-          className="bg-foreground text-primary-foreground hover:bg-foreground/90 rounded-md px-3 py-1 text-sm self-start mb-3"
+          variant="outline" // Use outline for border and bg
+          size="sm" // size="sm" is h-9 (36px) and px-3 (12px)
+          className="bg-input text-primary border-border hover:bg-accent hover:text-accent-foreground font-medium rounded-md py-1 px-3 self-start"
+          // Custom Tailwind: bg-input (#FFFFFF), text-primary (#6B46C1), border-border (#E2E8F0), rounded-md (6px), py-1 (4px vert padding), px-3 (12px horiz padding)
         >
-          learn...
+          learn…
         </Button>
 
         {community.subtopics && community.subtopics.length > 0 && (
-          <ul className="space-y-1 mt-1">
-            {community.subtopics.slice(0, 3).map((subtopic, index) => (
-              <li key={index} className={`text-sm ${textColor} leading-normal`}>
+          <ul className="space-y-1 mt-2 text-muted-foreground pl-4"> {/* mt-2 (8px), text-muted-foreground (#4A5568), pl-4 for viñetas */}
+            {community.subtopics.map((subtopic, index) => (
+              <li key={index} className="leading-normal list-disc list-inside"> {/* Ensure viñetas are visible */}
                 {subtopic}
               </li>
             ))}
           </ul>
         )}
       </CardContent>
-      
-      {/* CardFooter removed to match the new design */}
     </Card>
   );
 }

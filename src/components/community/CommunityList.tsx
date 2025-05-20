@@ -15,7 +15,7 @@ export function CommunityList({ communities, title }: CommunityListProps) {
   return (
     <div className="w-full">
       {title && <h2 className="text-2xl font-semibold mb-6 text-foreground">{title}</h2>}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4"> {/* Updated grid layout and gap */}
         {communities.map((community) => (
           <CommunityCard key={community.id} community={community} />
         ))}

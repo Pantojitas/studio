@@ -2,12 +2,13 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image'; // Import next/image
 import { useRouter } from 'next/navigation';
 import { SearchBar } from '@/components/search/SearchBar';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { LogicapAiLogoIcon } from '@/components/icons/LogicapAiLogoIcon'; // Import the new icon
+// LogicapAiLogoIcon is no longer imported as it's replaced by Image
 
 interface HeaderProps {
   searchTerm: string;
@@ -38,7 +39,16 @@ export function Header({ searchTerm, onSearchTermChange, onSearchSubmit }: Heade
           <ArrowLeft size={24} />
         </Button>
         <Link href="/" className="flex items-center gap-2 text-primary-foreground hover:opacity-90 transition-opacity">
-          <LogicapAiLogoIcon className="h-7 w-7" /> {/* Use the new icon here */}
+          {/* Replace LogicapAiLogoIcon with Next.js Image component */}
+          <Image 
+            src="https://placehold.co/100x28.png" // Placeholder image, ideally dimensions match your logo's aspect ratio
+            alt="LOGICAP.AI Logo" 
+            width={100} // Adjust width as needed
+            height={28} // Adjust height (h-7 is 28px)
+            className="object-contain" // Ensures logo scales nicely
+            data-ai-hint="logo brand"
+            priority // Good practice for LCP images like logos
+          />
           <h1 className="text-xl font-semibold tracking-tight">LOGICAP.AI</h1>
         </Link>
       </div>

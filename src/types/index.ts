@@ -15,4 +15,5 @@ export interface Community {
   subtopics?: string[]; // As per mock data, useful for UI
   isAISuggested?: boolean; // Flag to indicate if the community was suggested by AI
   imageUrl?: string; // Optional image for the community card
+  dataAiHint?: string; // Optional hint for AI image search if a placeholder is used
 }

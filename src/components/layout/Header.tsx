@@ -7,8 +7,7 @@ import { useRouter } from 'next/navigation';
 import { SearchBar } from '@/components/search/SearchBar';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
-import { LogicapAiLogoIcon } from '@/components/icons/LogicapAiLogoIcon'; // Import the icon
+import { ArrowLeft, BookOpen } from 'lucide-react'; // Changed from LogicapAiLogoIcon
 
 interface HeaderProps {
   searchTerm: string;
@@ -39,7 +38,7 @@ export function Header({ searchTerm, onSearchTermChange, onSearchSubmit }: Heade
           <ArrowLeft size={24} />
         </Button>
         <Link href="/" className="flex items-center gap-2 text-primary-foreground hover:opacity-90 transition-opacity">
-          <LogicapAiLogoIcon className="h-7 w-7" />
+          <BookOpen className="h-7 w-7" /> {/* Changed icon here */}
           <h1 className="text-xl font-semibold">LOGICAP.AI</h1>
         </Link>
       </div>

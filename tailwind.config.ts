@@ -43,6 +43,10 @@ export default {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
+        'navbar-bg': 'hsl(var(--navbar-background))',
+        'card-strip-color': 'hsl(var(--card-strip))',
+        'button-text-purple': 'hsl(var(--button-text-purple))',
+        'status-dot': 'hsl(var(--status-dot-green))',
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
@@ -50,7 +54,7 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-  			sidebar: {
+  			sidebar: { // Keep for shadcn sidebar compatibility if used elsewhere
   				DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',
   				primary: 'hsl(var(--sidebar-primary))',

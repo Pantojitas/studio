@@ -7,7 +7,10 @@ import { useRouter } from 'next/navigation';
 import { SearchBar } from '@/components/search/SearchBar';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, BookOpen } from 'lucide-react'; // Changed from LogicapAiLogoIcon
+import { ArrowLeft, BookOpen } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme/theme-toggle';
+import Image from 'next/image';
+
 
 interface HeaderProps {
   searchTerm: string;
@@ -32,13 +35,14 @@ export function Header({ searchTerm, onSearchTermChange, onSearchSubmit }: Heade
           variant="ghost"
           size="icon"
           onClick={handleGoBack}
-          className="text-primary-foreground hover:bg-primary-foreground/10 mr-1"
+          className="text-primary-foreground hover:bg-primary-foreground/10 mr-1 focus-visible:ring-0 focus-visible:ring-offset-0"
           aria-label="Go back"
         >
           <ArrowLeft size={24} />
         </Button>
         <Link href="/" className="flex items-center gap-2 text-primary-foreground hover:opacity-90 transition-opacity">
-          <BookOpen className="h-7 w-7" /> {/* Changed icon here */}
+          {/* Using BookOpen as a generic placeholder for the graphical part of the logo */}
+          <BookOpen className="h-7 w-7" />
           <h1 className="text-xl font-semibold">LOGICAP.AI</h1>
         </Link>
       </div>
@@ -52,7 +56,7 @@ export function Header({ searchTerm, onSearchTermChange, onSearchSubmit }: Heade
       </div>
 
       <div className="flex items-center gap-3">
-        {/* User Avatar Placeholder */}
+        <ThemeToggle />
         <div className="relative">
           <Avatar className="h-9 w-9 border-2 border-primary-foreground/50">
             <AvatarImage src="https://placehold.co/100x100.png" alt="User Avatar" data-ai-hint="person portrait" />

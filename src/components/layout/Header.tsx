@@ -1,3 +1,4 @@
+
 // src/components/layout/Header.tsx
 "use client";
 
@@ -8,7 +9,6 @@ import { SearchBar } from '@/components/search/SearchBar';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-// LogicapAiLogoIcon is no longer imported as it's replaced by Image
 
 interface HeaderProps {
   searchTerm: string;
@@ -33,23 +33,23 @@ export function Header({ searchTerm, onSearchTermChange, onSearchSubmit }: Heade
           variant="ghost" 
           size="icon" 
           onClick={handleGoBack} 
-          className="text-primary-foreground hover:bg-primary-foreground/10 mr-2"
+          className="text-primary-foreground hover:bg-primary-foreground/10 mr-1" // Reduced margin slightly
           aria-label="Go back"
         >
           <ArrowLeft size={24} />
         </Button>
-        <Link href="/" className="flex items-center gap-2 text-primary-foreground hover:opacity-90 transition-opacity">
-          {/* Replace LogicapAiLogoIcon with Next.js Image component */}
+        <Link href="/" className="flex items-center text-primary-foreground hover:opacity-90 transition-opacity">
+          {/* Image now represents the full logo (icon + text) */}
           <Image 
-            src="https://placehold.co/100x28.png" // Placeholder image, ideally dimensions match your logo's aspect ratio
+            src="https://placehold.co/200x50.png" // Placeholder for the full logo image
             alt="LOGICAP.AI Logo" 
-            width={100} // Adjust width as needed
-            height={28} // Adjust height (h-7 is 28px)
-            className="object-contain" // Ensures logo scales nicely
-            data-ai-hint="logo brand"
-            priority // Good practice for LCP images like logos
+            width={150} // Adjusted width for a logo that includes icon and text
+            height={35} // Adjusted height (h-14 is header height, aim for something like half)
+            className="object-contain" 
+            data-ai-hint="company logo" // More generic hint
+            priority 
           />
-          <h1 className="text-xl font-semibold tracking-tight">LOGICAP.AI</h1>
+          {/* The h1 for LOGICAP.AI is removed as the image should contain the text */}
         </Link>
       </div>
       
@@ -66,11 +66,11 @@ export function Header({ searchTerm, onSearchTermChange, onSearchSubmit }: Heade
         <div className="relative">
           <Avatar className="h-9 w-9 border-2 border-primary-foreground/50">
             <AvatarImage src="https://placehold.co/100x100.png" alt="User Avatar" data-ai-hint="person portrait" />
-            <AvatarFallback>LA</AvatarFallback> {/* Updated Fallback for LOGICAP.AI */}
+            <AvatarFallback>LA</AvatarFallback> 
           </Avatar>
           <span
             className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-offset-1 ring-offset-[hsl(var(--navbar-background))] ring-[hsl(var(--status-dot-green))]"
-            style={{ backgroundColor: 'hsl(var(--status-dot-green))' }} /* #38A169 */
+            style={{ backgroundColor: 'hsl(var(--status-dot-green))' }} 
             title="Online"
             aria-label="User status: Online"
           />
@@ -79,3 +79,4 @@ export function Header({ searchTerm, onSearchTermChange, onSearchSubmit }: Heade
     </header>
   );
 }
+

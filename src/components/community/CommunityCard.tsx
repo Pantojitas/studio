@@ -1,8 +1,8 @@
 // src/components/community/CommunityCard.tsx
 import type { Community } from '@/types';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, Star, AlertTriangle, Dot } from 'lucide-react';
+import { Users, Star, AlertTriangle } from 'lucide-react';
 import Image from 'next/image';
 
 interface CommunityCardProps {
@@ -10,25 +10,28 @@ interface CommunityCardProps {
 }
 
 export function CommunityCard({ community }: CommunityCardProps) {
-  const textColor = 'text-[#1A202C]'; // #1A202C
-  const subtopicColor = 'text-muted-foreground'; // Mapped to #4A5568
-  const iconColor = 'text-muted-foreground'; // Mapped to #4A5568
-  const buttonTextColor = 'text-[hsl(var(--button-text-purple))]'; // #6B46C1
-  const cardStripColor = 'bg-[hsl(var(--card-strip))]'; // #2D3748
+  const textColor = 'text-foreground'; // Use themed foreground
+  const iconColor = 'text-muted-foreground';
+  const cardStripColor = 'bg-[hsl(var(--card-strip))]';
+
+  // Use community.name for placeholder if imageUrl is missing
+  const placeholderText = community.name.replace(/\s/g, '+');
+  const effectiveImageUrl = community.imageUrl || `https://placehold.co/600x400.png?text=${placeholderText}`;
+  const showImage = !!community.imageUrl; // Only show image if explicitly provided
 
   return (
-    <Card className="flex flex-col overflow-hidden bg-[#F7F7F7] shadow-lg rounded-lg relative h-full">
+    <Card className="flex flex-col overflow-hidden bg-card shadow-lg rounded-lg relative h-full">
       <div className={`absolute right-0 top-0 bottom-0 w-2 ${cardStripColor}`}></div>
       
-      {community.imageUrl && (
+      {showImage && (
         <div className="relative w-full h-40">
           <Image 
-            src={community.imageUrl} 
+            src={effectiveImageUrl} 
             alt={community.name} 
             fill 
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
-            data-ai-hint={community.dataAiHint as string || "community topic"}
+            data-ai-hint={community.dataAiHint || "community topic"}
           />
         </div>
       )}
@@ -47,36 +50,34 @@ export function CommunityCard({ community }: CommunityCardProps) {
             <span>AI Suggested</span>
           </div>
         )}
-        <CardDescription className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-          {community.description}
-        </CardDescription>
+        {community.description && (
+            <CardDescription className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+              {community.description}
+            </CardDescription>
+        )}
       </CardHeader>
       
-      <CardContent className="flex-grow pb-3 pr-10"> {/* pr-10 to avoid overlap with strip */}
+      <CardContent className="flex-grow flex flex-col pb-4 pt-2 pr-10"> {/* Adjusted padding, pr-10 to avoid overlap with strip */}
+        <Button
+          variant="default"
+          size="sm"
+          className="bg-foreground text-primary-foreground hover:bg-foreground/90 rounded-md px-3 py-1 text-sm self-start mb-3"
+        >
+          learn...
+        </Button>
+
         {community.subtopics && community.subtopics.length > 0 && (
-          <div>
-            <h4 className={`text-xs font-semibold ${textColor} mb-1`}>Subtemas:</h4>
-            <ul className="space-y-0.5">
-              {community.subtopics.slice(0, 3).map((subtopic, index) => (
-                <li key={index} className={`flex items-center text-xs ${subtopicColor}`}>
-                  <Dot size={16} className="mr-0.5 shrink-0" /> {subtopic}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="space-y-1 mt-1">
+            {community.subtopics.slice(0, 3).map((subtopic, index) => (
+              <li key={index} className={`text-sm ${textColor} leading-normal`}>
+                {subtopic}
+              </li>
+            ))}
+          </ul>
         )}
       </CardContent>
       
-      <CardFooter className="pr-10 border-t border-border pt-3"> {/* pr-10 to avoid overlap with strip */}
-        <Button 
-          variant="outline" 
-          size="sm"
-          className={`bg-white border-[hsl(var(--border))] ${buttonTextColor} hover:${buttonTextColor}/90 rounded-md w-full`}
-        >
-          Learn...
-          {community.rating && <span className="ml-auto text-xs text-muted-foreground">★ {community.rating.toFixed(1)}</span>}
-        </Button>
-      </CardFooter>
+      {/* CardFooter removed to match the new design */}
     </Card>
   );
 }

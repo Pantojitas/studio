@@ -31,6 +31,8 @@ const mockTopics: import('@/types').Topic[] = [
   { id: "topic3", name: "Historia del Arte", averageRating: 4.2, tags: ["renacimiento", "barroco", "impresionismo"] },
   { id: "topic4", name: "Química Orgánica", averageRating: 4.0, tags: ["compuestos", "reacciones", "laboratorio"] },
   { id: "topic5", name: "Lenguaje y Literatura", averageRating: 4.6, tags: ["gramática", "novela", "poesía"] },
+  { id: "topicMath", name: "Matemáticas", averageRating: 4.7, tags: ["algebra", "geometría", "cálculo", "topología", "teoría de números"] },
+  { id: "topicPhysics", name: "Física", averageRating: 4.5, tags: ["mecánica", "eléctrica", "magnética", "termodinámica"] },
 ];
 
 const mockCommunities: import('@/types').Community[] = [
@@ -40,6 +42,8 @@ const mockCommunities: import('@/types').Community[] = [
   { id: "comm4", topicId: "topic2", name: "Data Science con Python", description: "Desde Pandas y NumPy hasta Scikit-learn y TensorFlow. Proyectos y discusiones.", rating: 4.6, membersCount: 1200, subtopics: ["Pandas", "Scikit-learn", "Visualización"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "data science" },
   { id: "comm5", topicId: "topic3", name: "Renacimiento en Detalle", description: "Análisis profundo de obras, artistas y contexto del Renacimiento italiano y nórdico.", rating: 4.3, membersCount: 95, subtopics: ["Da Vinci", "Miguel Ángel", "Mecenazgo"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "renaissance art" },
   { id: "comm6", topicId: "topic4", name: "Química de Polímeros", description: "Estudio de macromoléculas, síntesis y propiedades de los polímeros.", rating: 3.9, membersCount: 70, subtopics: ["Síntesis", "Caracterización", "Aplicaciones Industriales"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "chemistry lab" }, // Note: rating < 4
+  { id: "commMathLearn", topicId: "topicMath", name: "Matematic's learns", description: "", rating: 4.5, membersCount: 100, subtopics: ["Algebraic geometry", "Algebraic topology", "Number theory"], dataAiHint: "mathematics learning" },
+  { id: "commPhysicsLearn", topicId: "topicPhysics", name: "Fisic's learns", description: "", rating: 4.6, membersCount: 120, subtopics: ["Fisica mecanica", "Fisica electrica", "Fisica magnetica"], dataAiHint: "physics learning" },
 ];
 
 
@@ -76,7 +80,7 @@ const adminDB = {
               let results = mockCommunities.filter(comm => comm.topicId === value);
               // Simulate rating filter if combined (this mock is simplified)
               // For a real Firestore query, you'd chain .where() or handle complex queries
-              results = results.filter(comm => comm.rating && comm.rating >= 4.0);
+              results = results.filter(comm => comm.rating === undefined || (comm.rating && comm.rating >= 4.0)); // Allow undefined ratings for new cards
               
               return {
                 empty: results.length === 0,
@@ -90,7 +94,7 @@ const adminDB = {
             return {
               get: async () => {
                  if (collectionName === 'communities' && field === 'topicId' && operator === '==' && field2 === 'rating' && operator2 === '>=') {
-                    let results = mockCommunities.filter(comm => comm.topicId === value && comm.rating && comm.rating >= value2);
+                    let results = mockCommunities.filter(comm => comm.topicId === value && (comm.rating === undefined || (comm.rating && comm.rating >= value2)));
                     return {
                         empty: results.length === 0,
                         docs: results.map(doc => ({ id: doc.id, data: () => doc, exists: true })),
@@ -125,3 +129,4 @@ const adminDB = {
 
 export { adminDB };
 // export { adminDB, adminAuth }; // if using auth
+

@@ -31,7 +31,7 @@ const mockTopics: import('@/types').Topic[] = [
   { id: "topic3", name: "Historia del Arte", averageRating: 4.2, tags: ["renacimiento", "barroco", "impresionismo"] },
   { id: "topic4", name: "Química Orgánica", averageRating: 4.0, tags: ["compuestos", "reacciones", "laboratorio"] },
   { id: "topic5", name: "Lenguaje y Literatura", averageRating: 4.6, tags: ["gramática", "novela", "poesía"] },
-  { id: "topicMath", name: "Matemáticas", averageRating: 4.7, tags: ["algebra", "geometría", "cálculo", "topología", "teoría de números"] },
+  { id: "topicMath", name: "Matematicas", averageRating: 4.7, tags: ["algebra", "geometría", "cálculo", "topología", "teoría de números"] },
   { id: "topicPhysics", name: "Física", averageRating: 4.5, tags: ["mecánica", "eléctrica", "magnética", "termodinámica"] },
 ];
 

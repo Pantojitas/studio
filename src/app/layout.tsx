@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Topic Explorer',
+  title: 'LOGICAP.AI',
   description: 'Explore topics and communities, powered by Firebase Studio.',
 };
 

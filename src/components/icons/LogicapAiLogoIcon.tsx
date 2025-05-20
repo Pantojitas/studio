@@ -5,7 +5,7 @@ export function LogicapAiLogoIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="130 170 245 180" // Adjusted to fit the path data's coordinate space
+      viewBox="137.5 178.3 229.9 150" // Adjusted to be tighter around the path data
       fill="currentColor"
       {...props}
     >

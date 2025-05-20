@@ -29,15 +29,15 @@ const mockTopics: import('@/types').Topic[] = [
   { id: "topic1", name: "Matemáticas Avanzadas", averageRating: 4.5, tags: ["cálculo", "álgebra", "geometría"] },
   { id: "topic2", name: "Programación en Python", averageRating: 4.8, tags: ["python", "desarrollo web", "machine learning"] },
   { id: "topic3", name: "Historia del Arte", averageRating: 4.2, tags: ["renacimiento", "barroco", "impresionismo"] },
-  { id: "topic4", name: "Química Orgánica", averageRating": 4.0, tags: ["compuestos", "reacciones", "laboratorio"] },
-  { id: "topic5", name: "Lenguaje y Literatura", averageRating": 4.6, tags: ["gramática", "novela", "poesía"] },
+  { id: "topic4", name: "Química Orgánica", averageRating: 4.0, tags: ["compuestos", "reacciones", "laboratorio"] },
+  { id: "topic5", name: "Lenguaje y Literatura", averageRating: 4.6, tags: ["gramática", "novela", "poesía"] },
 ];
 
 const mockCommunities: import('@/types').Community[] = [
   { id: "comm1", topicId: "topic1", name: "Cálculo Multivariable Masters", description: "Dominando derivadas parciales, integrales múltiples y teoremas vectoriales.", rating: 4.7, membersCount: 230, subtopics: ["Teoría de Grafos", "Combinatoria", "Lógica"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "mathematics abstract" },
   { id: "comm2", topicId: "topic1", name: "Álgebra Lineal Aplicada", description: "Explorando espacios vectoriales, transformaciones lineales y sus usos prácticos.", rating: 4.9, membersCount: 180, subtopics: ["Matrices", "Eigenvalores", "Machine Learning"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "algebra geometry" },
-  { id: "comm3", topicId: "topic2", name: "Python Pro Devs", description: "Comunidad para desarrolladores Python avanzados: patrones, optimización y nuevas librerías.", rating": 4.8, membersCount": 520, subtopics: ["Django", "Flask", "AsyncIO"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "python code" },
-  { id: "comm4", topicId: "topic2", name: "Data Science con Python", description": "Desde Pandas y NumPy hasta Scikit-learn y TensorFlow. Proyectos y discusiones.", rating: 4.6, membersCount: 1200, subtopics: ["Pandas", "Scikit-learn", "Visualización"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "data science" },
+  { id: "comm3", topicId: "topic2", name: "Python Pro Devs", description: "Comunidad para desarrolladores Python avanzados: patrones, optimización y nuevas librerías.", rating: 4.8, membersCount: 520, subtopics: ["Django", "Flask", "AsyncIO"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "python code" },
+  { id: "comm4", topicId: "topic2", name: "Data Science con Python", description: "Desde Pandas y NumPy hasta Scikit-learn y TensorFlow. Proyectos y discusiones.", rating: 4.6, membersCount: 1200, subtopics: ["Pandas", "Scikit-learn", "Visualización"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "data science" },
   { id: "comm5", topicId: "topic3", name: "Renacimiento en Detalle", description: "Análisis profundo de obras, artistas y contexto del Renacimiento italiano y nórdico.", rating: 4.3, membersCount: 95, subtopics: ["Da Vinci", "Miguel Ángel", "Mecenazgo"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "renaissance art" },
   { id: "comm6", topicId: "topic4", name: "Química de Polímeros", description: "Estudio de macromoléculas, síntesis y propiedades de los polímeros.", rating: 3.9, membersCount: 70, subtopics: ["Síntesis", "Caracterización", "Aplicaciones Industriales"], imageUrl: "https://placehold.co/600x400.png", dataAiHint: "chemistry lab" }, // Note: rating < 4
 ];

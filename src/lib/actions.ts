@@ -1,3 +1,4 @@
+
 // src/lib/actions.ts
 "use server";
 
@@ -54,6 +55,7 @@ export async function getCommunitiesForTopicAction(
   topicId: string,
 ): Promise<{ communities: Community[]; aiSuggested?: boolean; topicName?: string }> {
   await networkDelay(800);
+  let currentTopicName: string | undefined;
 
   try {
     // Fetch topic details first to get name and tags for AI if needed
@@ -69,24 +71,17 @@ export async function getCommunitiesForTopicAction(
       console.error("Fetched topic data is malformed: name is missing or invalid.", topicData);
       throw new Error("Malformed topic data received: name is missing or invalid.");
     }
-    // Tags are crucial for AI suggestions. If missing/invalid, AI might not work well, but direct communities can still be fetched.
+    currentTopicName = topicData.name; // Assign here for use in logging and return
+
+    // Tags are crucial for AI suggestions.
     if (!Array.isArray(topicData.tags)) {
-        console.warn(`Tags for topic ${topicData.name} (ID: ${topicId}) are missing or not an array. AI suggestions might be affected.`);
+        console.warn(`Tags for topic ${currentTopicName} (ID: ${topicId}) are missing or not an array. AI suggestions might be affected.`);
     }
 
-    const currentTopicName = topicData.name; // Now safe to use
-
-    // In a real Firebase app:
-    // const communitiesRef = adminDB.collection('communities');
-    // const snapshot = await communitiesRef
-    //   .where('topicId', '==', topicId)
-    //   .where('rating', '>=', 4.0)
-    //   .get();
-    //
-    // Mocked query:
+    // Fetch direct communities
     const snapshot = await adminDB.collection('communities')
       .where('topicId', '==', topicId)
-      .where('rating', '>=', 4.0) // This chaining is simulated in the mock
+      .where('rating', '>=', 4.0)
       .get();
 
     let communities: Community[] = [];
@@ -118,34 +113,50 @@ export async function getCommunitiesForTopicAction(
       return { communities, aiSuggested: false, topicName: currentTopicName };
     }
 
-    // No communities found, try AI suggestions
+    // No direct communities found, try AI suggestions
     const tagsForAI = Array.isArray(topicData.tags) ? topicData.tags : [];
+    let aiCommunityList: Community[] = [];
     
-    console.log(`No direct communities for ${currentTopicName}. Trying AI suggestions with tags: [${tagsForAI.join(', ')}]`);
-    const aiSuggestions = await suggestSimilarCommunities({
-      topicName: currentTopicName, 
-      tags: tagsForAI,       
-    });
-
-    if (aiSuggestions && aiSuggestions.communities.length > 0) {
-      const aiCommunityList: Community[] = aiSuggestions.communities.map((sugg, index) => {
-        const name = typeof sugg.name === 'string' ? sugg.name : 'AI Suggested Community';
-        return {
-          id: `ai-${topicId}-${index}-${Date.now()}`, 
-          topicId: topicId, 
-          name: name,
-          description: sugg.description || "",
-          isAISuggested: true,
-          imageUrl: `https://placehold.co/300x200.png?text=${encodeURIComponent(name)}`,
-          dataAiHint: "abstract concept" 
-        };
+    try {
+      console.log(`No direct communities for "${currentTopicName}". Trying AI suggestions with tags: [${tagsForAI.join(', ')}]`);
+      const aiSuggestionsOutput = await suggestSimilarCommunities({
+        topicName: currentTopicName,
+        tags: tagsForAI,       
       });
-      return { communities: aiCommunityList, aiSuggested: true, topicName: currentTopicName };
+
+      if (aiSuggestionsOutput && aiSuggestionsOutput.communities && aiSuggestionsOutput.communities.length > 0) {
+        aiCommunityList = aiSuggestionsOutput.communities.map((sugg, index) => {
+          const name = typeof sugg.name === 'string' && sugg.name.trim() !== '' ? sugg.name : 'AI Suggested Community';
+          const description = typeof sugg.description === 'string' ? sugg.description : "";
+          return {
+            id: `ai-${topicId}-${index}-${Date.now()}`, 
+            topicId: topicId, 
+            name: name,
+            description: description,
+            isAISuggested: true,
+            imageUrl: `https://placehold.co/300x200.png?text=${encodeURIComponent(name)}`,
+            dataAiHint: sugg.name ? sugg.name.toLowerCase().split(' ').slice(0,2).join(' ') : "abstract concept" 
+          };
+        });
+        console.log(`AI suggested ${aiCommunityList.length} communities for "${currentTopicName}".`);
+        return { communities: aiCommunityList, aiSuggested: true, topicName: currentTopicName };
+      } else {
+         console.log(`AI returned no suggestions or an empty communities array for "${currentTopicName}".`);
+      }
+    } catch (aiError) {
+      console.error(`Error during AI suggestion for topic "${currentTopicName}" (ID: ${topicId}):`, aiError);
+      // Do not re-throw; fall through to return empty communities as direct ones were also empty.
+      // The specific AI error is logged, which is more helpful for debugging.
     }
 
-    return { communities: [], topicName: currentTopicName }; 
-  } catch (error) {
-    console.error(`Error in getCommunitiesForTopicAction for topicId ${topicId}:`, error);
+    // If direct communities were empty, and AI suggestions also resulted in an empty list or failed.
+    return { communities: [], aiSuggested: false, topicName: currentTopicName }; 
+
+  } catch (error) { // This is the outer catch-all for errors not related to AI suggestions (e.g., topic fetching)
+    console.error(`Error in getCommunitiesForTopicAction for topicId ${topicId} (Topic name: ${currentTopicName || 'unknown'}):`, error);
     throw new Error("Failed to fetch communities.");
   }
 }
+
+
+    

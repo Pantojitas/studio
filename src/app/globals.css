@@ -8,108 +8,109 @@ body {
 
 @layer base {
   :root {
-    --background: 300 27% 92%; /* #F0E6F0 - Very light purple */
-    --foreground: 220 27% 14%; /* #1A202C - Dark, for text on light bg and cards */
+    --background: 30 100% 97%; /* Very light, soft peach */
+    --foreground: 130 35% 25%; /* Dark, muted forest green */
 
-    --card: 0 0% 97%; /* #F7F7F7 - Card background */
-    --card-foreground: 220 27% 14%; /* #1A202C - Text on cards */
+    --card: 30 100% 94%; /* Slightly deeper soft peach */
+    --card-foreground: 130 35% 25%; /* Dark, muted forest green */
 
-    --popover: 0 0% 100%; /* White */
-    --popover-foreground: 220 27% 14%;
+    --popover: 30 100% 98%; /* Almost white peach */
+    --popover-foreground: 130 35% 25%;
 
-    --primary: 300 100% 25%; /* #800080 - Deep purple */
-    --primary-foreground: 300 100% 98%; /* Light text on primary */
+    --primary: 25 90% 65%; /* Medium, vibrant peach */
+    --primary-foreground: 30 100% 98%; /* Very light peach/white for contrast */
 
-    --secondary: 258 50% 85%; /* Lighter shade of navbar purple */
-    --secondary-foreground: 258 50% 20%; /* Darker purple text for on secondary */
+    --secondary: 120 25% 80%; /* Light, muted sage/forest green */
+    --secondary-foreground: 130 35% 30%; /* Darker green for contrast */
 
-    --muted: 240 10% 90%; /* Muted lavender/gray */
-    --muted-foreground: 217 14% 34%; /* #4A5568 - For subtopic text, icons */
+    --muted: 35 60% 92%; /* Very light, desaturated peach/tan */
+    --muted-foreground: 130 20% 45%; /* Medium muted green */
 
-    --accent: 240 67% 96%; /* #E6E6FA - Lavender */
-    --accent-foreground: 240 60% 30%; /* Darker lavender text for on accent */
+    --accent: 35 100% 75%; /* Brighter peach-orange */
+    --accent-foreground: 130 40% 20%; /* Dark green for contrast */
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84.2% 60.2%; /* Standard red */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 215 28% 90%; /* #E2E8F0 - For card button border */
-    --input: 0 0% 100%; /* #FFFFFF - For search bar background */
-    --ring: 300 100% 55%; /* Brighter purple for focus rings */
+    --border: 30 50% 85%; /* Light peachy tan border */
+    --input: 30 100% 98%; /* Very light peach for input background */
+    --ring: 25 90% 60%; /* Vibrant peach for focus rings */
 
     --radius: 0.5rem;
 
-    /* Specific UI element colors from design spec */
-    --navbar-background: 258 50% 52%; /* #6B46C1 */
-    --card-strip: 222 18% 23%; /* #2D3748 */
-    --button-text-purple: 258 50% 52%; /* #6B46C1 */
-    --status-dot-green: 146 49% 42%; /* #38A169 */
+    /* Specific UI element colors from design spec, adapted to Peach Forest */
+    --navbar-background: 130 30% 35%; /* Medium-dark forest green */
+    --card-strip: 130 40% 20%; /* Darkest forest green */
+    --button-text-purple: 25 90% 65%; /* Primary peach (was purple) */
+    --status-dot-green: 120 60% 40%; /* Clear, natural green */
 
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --chart-1: 20 90% 60%; /* Peach/Coral */
+    --chart-2: 40 80% 65%; /* Orange/Peach */
+    --chart-3: 120 30% 50%; /* Medium Forest Green */
+    --chart-4: 100 35% 60%; /* Lighter Green */
+    --chart-5: 30 70% 70%; /* Lighter Peach */
 
-    /* Sidebar variables - retain from original for shadcn sidebar component if used elsewhere */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar variables - Peach Forest Light */
+    --sidebar-background: 30 100% 97%;
+    --sidebar-foreground: 130 35% 25%;
+    --sidebar-primary: 25 90% 65%;
+    --sidebar-primary-foreground: 30 100% 98%;
+    --sidebar-accent: 35 100% 88%; /* Lighter peach for sidebar accent */
+    --sidebar-accent-foreground: 130 40% 20%;
+    --sidebar-border: 30 50% 85%;
+    --sidebar-ring: 25 90% 60%;
   }
 
   .dark {
-    --background: 220 27% 10%; /* Dark background for dark mode */
-    --foreground: 300 27% 92%; /* Light foreground for dark mode */
+    --background: 130 20% 8%; /* Very dark, desaturated forest green */
+    --foreground: 30 100% 92%; /* Light peach for text */
 
-    --card: 222 18% 15%; /* Dark card background */
-    --card-foreground: 300 27% 92%;
+    --card: 130 20% 12%; /* Dark forest green, slightly lighter than bg */
+    --card-foreground: 30 100% 92%;
 
-    --popover: 222 18% 10%;
-    --popover-foreground: 300 27% 92%;
+    --popover: 130 20% 7%; /* Almost black-green */
+    --popover-foreground: 30 100% 92%;
 
-    --primary: 300 100% 65%; /* Brighter purple for dark mode primary */
-    --primary-foreground: 300 100% 15%;
+    --primary: 25 100% 70%; /* Bright peach */
+    --primary-foreground: 130 40% 10%; /* Very dark green for contrast */
 
-    --secondary: 258 50% 30%;
-    --secondary-foreground: 258 50% 90%;
+    --secondary: 30 60% 40%; /* Muted, darker peach for secondary bg */
+    --secondary-foreground: 30 100% 90%; /* Light peach for text */
 
-    --muted: 240 10% 20%;
-    --muted-foreground: 217 14% 65%;
+    --muted: 130 15% 18%; /* Dark, desaturated green for muted bg */
+    --muted-foreground: 30 70% 75%; /* Medium-light peach */
 
-    --accent: 240 60% 25%; /* Darker lavender for dark mode accent */
-    --accent-foreground: 240 67% 90%;
+    --accent: 35 100% 75%; /* Vibrant peach-orange */
+    --accent-foreground: 130 30% 15%; /* Dark green for contrast */
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 70% 55%; /* Slightly muted red for dark mode */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 215 28% 25%;
-    --input: 222 18% 20%; /* Dark input for dark mode */
-    --ring: 300 100% 75%;
+    --border: 130 15% 25%; /* Dark green border */
+    --input: 130 20% 15%; /* Dark green for input background */
+    --ring: 25 100% 75%; /* Bright peach for focus rings */
 
-    /* Specific UI element colors for dark mode (adjust if needed) */
-    --navbar-background: 258 50% 32%; 
-    --card-strip: 222 18% 70%; 
-    --button-text-purple: 258 50% 72%;
-    --status-dot-green: 146 49% 62%;
+    /* Specific UI element colors for dark mode - Peach Forest Dark */
+    --navbar-background: 130 25% 15%; /* Dark forest green for navbar */
+    --card-strip: 30 80% 80%; /* Light peach for card strip contrast */
+    --button-text-purple: 25 100% 70%; /* Primary peach (was purple) */
+    --status-dot-green: 120 50% 55%; /* Brighter, slightly desaturated green */
 
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-1: 25 100% 70%; /* Bright Peach */
+    --chart-2: 40 100% 75%; /* Bright Orange/Peach */
+    --chart-3: 120 40% 60%; /* Lighter Forest Green */
+    --chart-4: 100 45% 70%; /* Pale Green */
+    --chart-5: 30 90% 80%; /* Pale Peach */
     
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar variables - Peach Forest Dark */
+    --sidebar-background: 130 20% 10%; /* Dark forest for sidebar */
+    --sidebar-foreground: 30 100% 92%;
+    --sidebar-primary: 25 100% 70%;
+    --sidebar-primary-foreground: 130 40% 10%;
+    --sidebar-accent: 30 60% 30%; /* Muted darker peach for sidebar accent */
+    --sidebar-accent-foreground: 30 100% 90%;
+    --sidebar-border: 130 15% 25%;
+    --sidebar-ring: 25 100% 75%;
   }
 }
 
